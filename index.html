@@ -40,14 +40,15 @@ body::before {
 
 header {
     position: relative;
-    height: 90vh;
+    min-height: 90vh;
     background: url('https://images.unsplash.com/photo-1582898342263-3a00f3f32e91?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    text-shadow: 0 0 20px #68d5f5;
+    text-shadow: 0 0 25px #68d5f5;
+    padding: 20px;
 }
 
 header h1 {
@@ -59,6 +60,34 @@ header h1 {
 header p {
     font-size: 22px;
     color: #a0e7ff;
+    margin: 5px 0;
+}
+
+header iframe {
+    margin-top: 20px; /* reduces the gap */
+    border: 0;
+    width: 350px;
+    height: 470px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #68d5f5;
+}
+
+a.button {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px;
+    background: #68d5f5;
+    color: #000;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 0 15px #68d5f5;
+    transition: 0.3s;
+}
+
+a.button:hover {
+    box-shadow: 0 0 25px #68d5f5;
+    transform: translateY(-2px);
 }
 
 .section {
@@ -81,31 +110,6 @@ header p {
     line-height: 1.6;
 }
 
-iframe {
-    border: 0;
-    max-width: 100%;
-    box-shadow: 0 0 25px #68d5f5;
-    border-radius: 12px;
-}
-
-a.button {
-    display: inline-block;
-    padding: 12px 25px;
-    margin: 10px;
-    background: #68d5f5;
-    color: #000;
-    font-weight: bold;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 0 15px #68d5f5;
-    transition: 0.3s;
-}
-
-a.button:hover {
-    box-shadow: 0 0 25px #68d5f5;
-    transform: translateY(-2px);
-}
-
 footer {
     padding: 40px 20px;
     font-size: 14px;
@@ -117,9 +121,9 @@ footer {
 @media(max-width: 768px){
     header h1 {font-size: 42px;}
     header p {font-size: 18px;}
+    header iframe {width: 90%; height: 400px;}
     .section h2 {font-size: 28px;}
     .section p {font-size: 16px;}
-    iframe {width: 90%; height: 400px;}
 }
 </style>
 </head>
@@ -127,20 +131,16 @@ footer {
 
 <header>
     <h1>MU-SIC</h1>
-    <p>Intergalactic vibes from the cosmic everything
-    </p>
+    <p>Intergalactic vibes from the cosmic everything</p>
+    <p>Pulling signals from stars and souls of eternities forever</p>
     
-    <p>Pulling signals from stars and souls of eternities forever
-    </p>
-    <a class="button" href="https://mu-sic.bandcamp.com">Bandcamp</a>
-</header>
-
-<div class="section">
-    <h2>Listen</h2>
-    <iframe style="width:350px; height:470px;" 
+    <!-- Bandcamp player now inside header -->
+    <iframe 
         src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
         seamless></iframe>
-</div>
+    
+    <a class="button" href="https://mu-sic.bandcamp.com">Bandcamp</a>
+</header>
 
 <div class="section">
     <h2>About</h2>
