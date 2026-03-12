@@ -13,8 +13,6 @@ body {
     background: #000;
     overflow-x: hidden;
 }
-
-/* Full-screen starfield canvas */
 #stars {
     position: fixed;
     top:0; left:0;
@@ -22,8 +20,6 @@ body {
     height:100%;
     z-index:-1;
 }
-
-/* Header */
 header {
     position: relative;
     min-height: 90vh;
@@ -36,7 +32,6 @@ header {
     background-size: cover;
     transition: background-position 0.2s;
 }
-
 header::after {
     content:'';
     position:absolute;
@@ -44,255 +39,14 @@ header::after {
     width:100%; height:100%;
     background:rgba(0,0,0,0.5);
 }
-
-/* Header Logo */
 #header-logo {
     max-width: 500px;
     width: 60%;
     height: auto;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 25px #68d5f5);
+    filter: drop-shadow(0 0 40px #68d5f5);
     transition: transform 0.3s, filter 0.3s;
 }
-
 #header-logo:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 40px #68d5f5);
-}
-
-header p {
-    font-size: 22px;
-    color: #a0e7ff;
-    margin: 5px 0;
-    text-shadow: 0 0 12px #68d5f5;
-}
-
-/* Pulse effect for headings */
-header h1 {
-    display: none; /* Hide default H1 since logo is replacing it */
-}
-
-@keyframes pulseGlow {
-    0% {text-shadow:0 0 10px #68d5f5;}
-    100% {text-shadow:0 0 25px #68d5f5;}
-}
-
-/* Bandcamp & Spotify players */
-iframe {
-    border:0;
-    border-radius:12px;
-    box-shadow: 0 0 35px #68d5f5;
-    margin: 15px 0;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-iframe:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 55px #68d5f5;
-}
-
-/* Buttons */
-a.button {
-    display: inline-block;
-    padding:12px 25px;
-    margin:8px;
-    background:#68d5f5;
-    color:#000;
-    font-weight:bold;
-    border-radius:8px;
-    text-decoration:none;
-    box-shadow:0 0 15px #68d5f5;
-    transition:0.3s;
-}
-
-a.button:hover {
-    box-shadow: 0 0 35px #68d5f5;
-    transform: translateY(-2px);
-}
-
-/* Sections */
-.section {
-    padding:60px 20px;
-    max-width:1000px;
-    margin:auto;
-    text-align:center;
-}
-
-.section h2 {
-    font-size:36px;
-    margin-bottom:25px;
-    color:#68d5f5;
-    text-shadow:0 0 8px #68d5f5;
-}
-
-.section p {
-    font-size:18px;
-    color:#ddd;
-    line-height:1.6;
-}
-
-/* Gallery */
-.gallery-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
-}
-
-.gallery-grid img {
-    width:100%;
-    border-radius:10px;
-    box-shadow:0 0 15px #68d5f5;
-    transition:0.3s;
-}
-
-.gallery-grid img:hover {
-    transform:scale(1.05);
-    box-shadow:0 0 35px #68d5f5;
-}
-
-/* Footer */
-footer {
-    padding:40px 20px;
-    font-size:14px;
-    color:#888;
-    background:#0b0b1f;
-}
-
-/* Responsive */
-@media(max-width:768px){
-    #header-logo {width:80%;}
-    header p {font-size:18px;}
-    iframe {width:90%; height:400px;}
-    .section h2 {font-size:28px;}
-    .section p {font-size:16px;}
-}
-</style>
-</head>
-<body>
-
-<canvas id="stars"></canvas>
-
-<header>
-    <!-- Logo image -->
-    <img src="logo.png" alt="MU-SIC Logo" id="header-logo">
-    <p>Intergalactic vibes from the cosmic everything</p>
-    <p>Pulling signals from stars and souls of eternities forever</p>
-
-    <!-- Bandcamp player -->
-    <iframe 
-        src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
-        seamless></iframe>
-
-    <!-- Spotify embed -->
-    <iframe 
-        src="https://open.spotify.com/embed/artist/0XlOOlFvxmjMptg6k4c08n" 
-        width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
-    <!-- Buttons -->
-    <a class="button" href="https://mu-sic.bandcamp.com" target="_blank">Bandcamp</a>
-    <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
-</header>
-
-<!-- Bio Section -->
-<div class="section" id="bio">
-    <h2>Bio</h2>
-    <p>Your musical journey, your story, your mission — write it here. Connect with your fans and let them know who you truly are and where your sound comes from.</p>
-</div>
-
-<!-- Gallery Section -->
-<div class="section" id="gallery">
-    <h2>Photos</h2>
-    <div class="gallery-grid">
-        <img src="images/photo1.jpg" alt="Live performance">
-        <img src="images/photo2.jpg" alt="Album artwork">
-        <img src="images/photo3.jpg" alt="Cosmic vibes">
-    </div>
-</div>
-
-<!-- About Section -->
-<div class="section" id="about">
-    <h2>About</h2>
-    <p>MU-SIC is an independent music project exploring rhythm, space, and cosmic connection. Tune in and experience intergalactic sounds that transcend boundaries.</p>
-</div>
-
-<!-- Latest Releases -->
-<div class="section" id="releases">
-    <h2>Latest Releases</h2>
-    <p>Demo Daze and the Intergalactic Broadcast :ruff edition: (2026)</p>
-</div>
-
-<!-- Tour Dates -->
-<div class="section" id="tour">
-    <h2>Tour Dates</h2>
-    <p>Coming soon! Follow us on Bandcamp and socials for updates.</p>
-</div>
-
-<!-- Merch -->
-<div class="section" id="merch">
-    <h2>Merch</h2>
-    <p>Check out official MU-SIC merch below:</p>
-    <a class="button" href="https://mu-sic.bandcamp.com/merch" target="_blank">Bandcamp Merch</a>
-</div>
-
-<!-- Writings -->
-<div class="section" id="writings">
-    <h2>Selected Writings</h2>
-    <p>Explore thoughts, lyrics, poems, and reflections — a space for creative expression.</p>
-    <a class="button" href="writings.html" target="_blank">Read Writings</a>
-</div>
-
-<!-- Contact -->
-<div class="section" id="contact">
-    <h2>Contact & Socials</h2>
-    <a class="button" href="https://mu-sic.bandcamp.com/contact" target="_blank">Bandcamp Contact</a>
-    <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
-</div>
-
-<footer>
-    &copy; 2026 MU-SIC. All rights reserved.
-</footer>
-
-<script>
-// Starfield animation
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let stars = [];
-for(let i=0; i<200; i++){
-    stars.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        r: Math.random()*1.5,
-        dx: (Math.random()-0.5)/2,
-        dy: (Math.random()-0.5)/2
-    });
-}
-
-function animateStars(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    stars.forEach(s=>{
-        s.x += s.dx; s.y += s.dy;
-        if(s.x<0) s.x = canvas.width;
-        if(s.x>canvas.width) s.x = 0;
-        if(s.y<0) s.y = canvas.height;
-        if(s.y>canvas.height) s.y = 0;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fillStyle='#fff'; ctx.fill();
-    });
-    requestAnimationFrame(animateStars);
-}
-animateStars();
-
-// Parallax header
-window.addEventListener('scroll',()=>{
-    document.querySelector('header').style.backgroundPositionY = `${window.scrollY * 0.4}px`;
-});
-</script>
-
-</body>
-</html>
+    filter: drop-shadow(0 0 60
