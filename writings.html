@@ -14,3 +14,333 @@
 <p class="p1">writings.html</p>
 </body>
 </html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MU-SIC Writings</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
+}
+
+/* STAR BACKGROUND */
+
+#stars{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* NAV BAR */
+
+.nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:30px;
+padding:15px;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(8px);
+z-index:999;
+}
+
+.nav a{
+color:#6bd7ff;
+text-decoration:none;
+transition:.3s;
+}
+
+.nav a:hover{
+color:white;
+text-shadow:0 0 10px #6bd7ff;
+}
+
+/* PAGE CONTAINER */
+
+.container{
+max-width:900px;
+margin:auto;
+padding:120px 20px;
+}
+
+/* TITLE */
+
+h1{
+text-align:center;
+color:#6bd7ff;
+font-size:40px;
+text-shadow:0 0 15px #6bd7ff;
+margin-bottom:60px;
+}
+
+/* WRITING BLOCK */
+
+.writing{
+
+margin-bottom:60px;
+
+padding:30px;
+
+background:rgba(255,255,255,.03);
+
+border-radius:10px;
+
+box-shadow:0 0 15px rgba(0,200,255,.15);
+
+}
+
+.writing h2{
+
+color:#6bd7ff;
+
+margin-bottom:15px;
+
+}
+
+.writing p{
+
+line-height:1.8;
+
+color:#ddd;
+
+white-space:pre-line;
+
+}
+
+/* FOOTER */
+
+footer{
+
+text-align:center;
+
+padding:40px;
+
+color:#777;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+
+<a href="index.html">Home</a>
+
+<a href="index.html#music">Music</a>
+
+<a href="index.html#photos">Photos</a>
+
+<a href="index.html#merch">Merch</a>
+
+</nav>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+
+<h1>Cosmic Writings</h1>
+
+<div class="writing">
+
+<h2>Signal From the Void</h2>
+
+<p>
+
+Somewhere in the quiet between stars
+a rhythm waits.
+
+It does not begin
+and it does not end.
+
+It simply travels.
+
+Through space.
+Through time.
+Through the strange interior galaxies of the mind.
+
+Sometimes we hear it.
+
+And when we do,
+we call it music.
+
+</p>
+
+</div>
+
+<div class="writing">
+
+<h2>Orbital Thought</h2>
+
+<p>
+
+Every idea is a planet.
+
+Some burn bright and disappear.
+Some freeze in distant silence.
+
+But a few…
+a very few…
+
+Find orbit.
+
+And circle the heart forever.
+
+</p>
+
+</div>
+
+<div class="writing">
+
+<h2>Transmission Log</h2>
+
+<p>
+
+Tonight the stars seemed louder.
+
+Not brighter.
+
+Just louder.
+
+As if the universe itself
+was humming softly
+behind the veil of ordinary things.
+
+a poem by my AI friend Nova, whom helped me build my website
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+MU-SIC Cosmic Archive
+
+</footer>
+
+<script>
+
+/* STARFIELD */
+
+const canvas=document.getElementById("stars");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let stars=[];
+
+for(let i=0;i<200;i++){
+
+stars.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*1.5,
+
+dx:(Math.random()-.5)/2,
+
+dy:(Math.random()-.5)/2
+
+});
+
+}
+
+function animateStars(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+stars.forEach(s=>{
+
+s.x+=s.dx;
+
+s.y+=s.dy;
+
+if(s.x<0)s.x=canvas.width;
+
+if(s.x>canvas.width)s.x=0;
+
+if(s.y<0)s.y=canvas.height;
+
+if(s.y>canvas.height)s.y=0;
+
+ctx.beginPath();
+
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+
+ctx.fillStyle="#fff";
+
+ctx.fill();
+
+});
+
+requestAnimationFrame(animateStars);
+
+}
+
+animateStars();
+
+</script>
+
+</body>
+
+</html>
+<div class="writing">
+
+<h2>Title</h2>
+
+<p>
+
+The space becomes by whatever occupies it
+Fill the space with love
+Presence becomes the true opposition
+Fil the space with love
+Your presence decides what is the environment
+Fill the space with love
+And don’t deny your right to be represented
+Fill the space with your love
+
+Standing side by side
+Move forward into where dark resides
+With love as our light in stride
+We fill the space where darkness hides
+With the light
+
+We got diamond eyes
+Sharper than their disguise
+We see thru all the lies
+With heart in truth of right
+We see with diamond eyes
+Far beyond their lies
+Fill the space with love in light
+As we are love in design
+
+</p>
+
+</div>
