@@ -23,7 +23,7 @@ body {
     z-index:-1;
 }
 
-/* Header with parallax background */
+/* Header */
 header {
     position: relative;
     min-height: 90vh;
@@ -42,16 +42,13 @@ header::after {
     position:absolute;
     top:0; left:0;
     width:100%; height:100%;
-    background:rgba(0,0,0,0.3);
-    z-index: 0;  /* overlay behind logo */
+    background:rgba(0,0,0,0.5);
 }
 
-/* Header logo */
+/* Header Logo */
 #header-logo {
-    position: relative;  /* make logo appear above overlay */
-    z-index: 1;
-    max-width: 600px;
-    width: 90%;
+    max-width: 500px;
+    width: 60%;
     height: auto;
     margin-bottom: 20px;
     filter: drop-shadow(0 0 25px #68d5f5);
@@ -59,23 +56,20 @@ header::after {
 }
 
 #header-logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     filter: drop-shadow(0 0 40px #68d5f5);
-}
-
-header h1 {
-    font-size: 64px;
-    color: #68d5f5;
-    text-shadow: 0 0 20px #68d5f5;
-    animation: pulseGlow 2s infinite alternate;
-    display: none;  /* hide H1 because we're using a logo image */
 }
 
 header p {
     font-size: 22px;
     color: #a0e7ff;
     margin: 5px 0;
-    animation: pulseGlow 2s infinite alternate;
+    text-shadow: 0 0 12px #68d5f5;
+}
+
+/* Pulse effect for headings */
+header h1 {
+    display: none; /* Hide default H1 since logo is replacing it */
 }
 
 @keyframes pulseGlow {
@@ -83,26 +77,25 @@ header p {
     100% {text-shadow:0 0 25px #68d5f5;}
 }
 
-/* Bandcamp player glow & hover */
-header iframe {
-    margin-top: 20px;
+/* Bandcamp & Spotify players */
+iframe {
     border:0;
-    width:350px;
-    height:470px;
     border-radius:12px;
     box-shadow: 0 0 35px #68d5f5;
-    transition: transform 0.2s;
+    margin: 15px 0;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-header iframe:hover {
+iframe:hover {
     transform: scale(1.02);
     box-shadow: 0 0 55px #68d5f5;
 }
 
+/* Buttons */
 a.button {
     display: inline-block;
     padding:12px 25px;
-    margin:10px;
+    margin:8px;
     background:#68d5f5;
     color:#000;
     font-weight:bold;
@@ -117,6 +110,7 @@ a.button:hover {
     transform: translateY(-2px);
 }
 
+/* Sections */
 .section {
     padding:60px 20px;
     max-width:1000px;
@@ -137,6 +131,7 @@ a.button:hover {
     line-height:1.6;
 }
 
+/* Gallery */
 .gallery-grid {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -155,6 +150,7 @@ a.button:hover {
     box-shadow:0 0 35px #68d5f5;
 }
 
+/* Footer */
 footer {
     padding:40px 20px;
     font-size:14px;
@@ -164,9 +160,9 @@ footer {
 
 /* Responsive */
 @media(max-width:768px){
-    #header-logo {width:90%;}
+    #header-logo {width:80%;}
     header p {font-size:18px;}
-    header iframe {width:90%;height:400px;}
+    iframe {width:90%; height:400px;}
     .section h2 {font-size:28px;}
     .section p {font-size:16px;}
 }
@@ -177,7 +173,8 @@ footer {
 <canvas id="stars"></canvas>
 
 <header>
-    <img src="images/0022748216_100.png" alt="MU-SIC Logo" id="header-logo">
+    <!-- Logo image -->
+    <img src="logo.png" alt="MU-SIC Logo" id="header-logo">
     <p>Intergalactic vibes from the cosmic everything</p>
     <p>Pulling signals from stars and souls of eternities forever</p>
 
@@ -186,17 +183,24 @@ footer {
         src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
         seamless></iframe>
 
-    <!-- Social buttons -->
+    <!-- Spotify embed -->
+    <iframe 
+        src="https://open.spotify.com/embed/artist/0XlOOlFvxmjMptg6k4c08n" 
+        width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+    <!-- Buttons -->
     <a class="button" href="https://mu-sic.bandcamp.com" target="_blank">Bandcamp</a>
     <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n?si=iKj-HvlaTGyTilDCZieLTw" target="_blank">Spotify</a>
+    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
 </header>
 
+<!-- Bio Section -->
 <div class="section" id="bio">
     <h2>Bio</h2>
     <p>Your musical journey, your story, your mission — write it here. Connect with your fans and let them know who you truly are and where your sound comes from.</p>
 </div>
 
+<!-- Gallery Section -->
 <div class="section" id="gallery">
     <h2>Photos</h2>
     <div class="gallery-grid">
@@ -206,38 +210,44 @@ footer {
     </div>
 </div>
 
+<!-- About Section -->
 <div class="section" id="about">
     <h2>About</h2>
     <p>MU-SIC is an independent music project exploring rhythm, space, and cosmic connection. Tune in and experience intergalactic sounds that transcend boundaries.</p>
 </div>
 
+<!-- Latest Releases -->
 <div class="section" id="releases">
     <h2>Latest Releases</h2>
     <p>Demo Daze and the Intergalactic Broadcast :ruff edition: (2026)</p>
 </div>
 
+<!-- Tour Dates -->
 <div class="section" id="tour">
     <h2>Tour Dates</h2>
     <p>Coming soon! Follow us on Bandcamp and socials for updates.</p>
 </div>
 
+<!-- Merch -->
 <div class="section" id="merch">
     <h2>Merch</h2>
     <p>Check out official MU-SIC merch below:</p>
     <a class="button" href="https://mu-sic.bandcamp.com/merch" target="_blank">Bandcamp Merch</a>
 </div>
 
+<!-- Writings -->
 <div class="section" id="writings">
     <h2>Selected Writings</h2>
     <p>Explore thoughts, lyrics, poems, and reflections — a space for creative expression.</p>
     <a class="button" href="writings.html" target="_blank">Read Writings</a>
 </div>
 
+<!-- Contact -->
 <div class="section" id="contact">
     <h2>Contact & Socials</h2>
     <a class="button" href="https://mu-sic.bandcamp.com/contact" target="_blank">Bandcamp Contact</a>
     <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n?si=iKj-HvlaTGyTilDCZieLTw" target="_blank">Spotify</a>
+    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
 </div>
 
 <footer>
