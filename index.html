@@ -6,6 +6,7 @@
 <title>MU-SIC</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <style>
+/* Basic styles */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -17,13 +18,37 @@ body {
 /* Full-screen starfield canvas */
 #stars {
     position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
 }
 
-/* Header with parallax background */
+/* Floating cosmic nav bar */
+#cosmic-nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    border-radius: 12px;
+    z-index: 10;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 0 20px #68d5f5;
+}
+#cosmic-nav a {
+    color: #68d5f5;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+#cosmic-nav a:hover {
+    color: #a0e7ff;
+    text-shadow: 0 0 20px #68d5f5;
+}
+
+/* Header */
 header {
     position: relative;
     min-height: 90vh;
@@ -36,145 +61,147 @@ header {
     background-size: cover;
     transition: background-position 0.2s;
 }
-
 header::after {
-    content:'';
-    position:absolute;
+    content: '';
+    position: absolute;
     top:0; left:0;
     width:100%; height:100%;
-    background:rgba(0,0,0,0.3);
-    z-index: 0;  /* overlay behind logo */
+    background: rgba(0,0,0,0.3); /* slightly lighter overlay for brighter logo */
 }
 
 /* Header logo */
 #header-logo {
-    position: relative;  /* make logo appear above overlay */
-    z-index: 1;
-    max-width: 600px;
+    max-width: 600px;  /* bigger logo */
     width: 90%;
     height: auto;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 25px #68d5f5);
+    filter: drop-shadow(0 0 25px #68d5f5); /* brighter glow */
     transition: transform 0.3s, filter 0.3s;
 }
-
 #header-logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.12);
     filter: drop-shadow(0 0 40px #68d5f5);
 }
 
+/* Header texts */
 header h1 {
-    font-size: 64px;
-    color: #68d5f5;
-    text-shadow: 0 0 20px #68d5f5;
-    animation: pulseGlow 2s infinite alternate;
-    display: none;  /* hide H1 because we're using a logo image */
+    display: none; /* hide text since we are using image */
 }
-
 header p {
     font-size: 22px;
     color: #a0e7ff;
     margin: 5px 0;
-    animation: pulseGlow 2s infinite alternate;
+    text-shadow: 0 0 15px #68d5f5;
 }
 
+/* Pulse animation for header text */
 @keyframes pulseGlow {
     0% {text-shadow:0 0 10px #68d5f5;}
     100% {text-shadow:0 0 25px #68d5f5;}
 }
 
-/* Bandcamp player glow & hover */
+/* Bandcamp iframe */
 header iframe {
     margin-top: 20px;
-    border:0;
-    width:350px;
-    height:470px;
-    border-radius:12px;
-    box-shadow: 0 0 35px #68d5f5;
+    border: 0;
+    width: 350px;
+    height: 470px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px #68d5f5;
     transition: transform 0.2s;
 }
-
 header iframe:hover {
     transform: scale(1.02);
-    box-shadow: 0 0 55px #68d5f5;
+    box-shadow: 0 0 60px #68d5f5;
 }
 
+/* Buttons */
 a.button {
     display: inline-block;
-    padding:12px 25px;
-    margin:10px;
-    background:#68d5f5;
-    color:#000;
-    font-weight:bold;
-    border-radius:8px;
-    text-decoration:none;
-    box-shadow:0 0 15px #68d5f5;
-    transition:0.3s;
+    padding: 12px 25px;
+    margin: 10px;
+    background: #68d5f5;
+    color: #000;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 0 20px #68d5f5;
+    transition: 0.3s;
 }
-
 a.button:hover {
     box-shadow: 0 0 35px #68d5f5;
     transform: translateY(-2px);
 }
 
+/* Sections */
 .section {
-    padding:60px 20px;
-    max-width:1000px;
-    margin:auto;
-    text-align:center;
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
 }
-
 .section h2 {
-    font-size:36px;
-    margin-bottom:25px;
-    color:#68d5f5;
-    text-shadow:0 0 8px #68d5f5;
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: #68d5f5;
+    text-shadow: 0 0 12px #68d5f5;
 }
-
 .section p {
-    font-size:18px;
-    color:#ddd;
-    line-height:1.6;
+    font-size: 18px;
+    color: #ddd;
+    line-height: 1.6;
 }
 
+/* Gallery grid */
 .gallery-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 15px;
 }
-
 .gallery-grid img {
-    width:100%;
-    border-radius:10px;
-    box-shadow:0 0 15px #68d5f5;
-    transition:0.3s;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #68d5f5;
+    transition: 0.3s;
 }
-
 .gallery-grid img:hover {
-    transform:scale(1.05);
-    box-shadow:0 0 35px #68d5f5;
+    transform: scale(1.05);
+    box-shadow: 0 0 40px #68d5f5;
 }
 
+/* Footer */
 footer {
-    padding:40px 20px;
-    font-size:14px;
-    color:#888;
-    background:#0b0b1f;
+    padding: 40px 20px;
+    font-size: 14px;
+    color: #888;
+    background: #0b0b1f;
 }
 
 /* Responsive */
 @media(max-width:768px){
-    #header-logo {width:90%;}
-    header p {font-size:18px;}
-    header iframe {width:90%;height:400px;}
-    .section h2 {font-size:28px;}
-    .section p {font-size:16px;}
+    #header-logo {width: 95%;}
+    header p {font-size: 18px;}
+    header iframe {width: 90%; height: 400px;}
+    .section h2 {font-size: 28px;}
+    .section p {font-size: 16px;}
 }
+
 </style>
 </head>
 <body>
 
 <canvas id="stars"></canvas>
+
+<!-- Floating nav bar -->
+<nav id="cosmic-nav">
+    <a href="#bio">Bio</a>
+    <a href="#gallery">Photos</a>
+    <a href="#about">About</a>
+    <a href="#releases">Music</a>
+    <a href="#writings">Writings</a>
+    <a href="#merch">Merch</a>
+    <a href="#contact">Contact</a>
+</nav>
 
 <header>
     <img src="images/0022748216_100.png" alt="MU-SIC Logo" id="header-logo">
@@ -182,21 +209,21 @@ footer {
     <p>Pulling signals from stars and souls of eternities forever</p>
 
     <!-- Bandcamp player -->
-    <iframe 
-        src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
-        seamless></iframe>
+    <iframe src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless></iframe>
 
     <!-- Social buttons -->
     <a class="button" href="https://mu-sic.bandcamp.com" target="_blank">Bandcamp</a>
     <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n?si=iKj-HvlaTGyTilDCZieLTw" target="_blank">Spotify</a>
+    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
 </header>
 
+<!-- Bio Section -->
 <div class="section" id="bio">
     <h2>Bio</h2>
-    <p>Your musical journey, your story, your mission — write it here. Connect with your fans and let them know who you truly are and where your sound comes from.</p>
+    <p>Your musical journey, your story, your mission — connect with fans and share your cosmic sound.</p>
 </div>
 
+<!-- Gallery -->
 <div class="section" id="gallery">
     <h2>Photos</h2>
     <div class="gallery-grid">
@@ -206,38 +233,38 @@ footer {
     </div>
 </div>
 
+<!-- About -->
 <div class="section" id="about">
     <h2>About</h2>
     <p>MU-SIC is an independent music project exploring rhythm, space, and cosmic connection. Tune in and experience intergalactic sounds that transcend boundaries.</p>
 </div>
 
+<!-- Releases -->
 <div class="section" id="releases">
     <h2>Latest Releases</h2>
     <p>Demo Daze and the Intergalactic Broadcast :ruff edition: (2026)</p>
 </div>
 
-<div class="section" id="tour">
-    <h2>Tour Dates</h2>
-    <p>Coming soon! Follow us on Bandcamp and socials for updates.</p>
-</div>
-
-<div class="section" id="merch">
-    <h2>Merch</h2>
-    <p>Check out official MU-SIC merch below:</p>
-    <a class="button" href="https://mu-sic.bandcamp.com/merch" target="_blank">Bandcamp Merch</a>
-</div>
-
+<!-- Writings -->
 <div class="section" id="writings">
     <h2>Selected Writings</h2>
     <p>Explore thoughts, lyrics, poems, and reflections — a space for creative expression.</p>
     <a class="button" href="writings.html" target="_blank">Read Writings</a>
 </div>
 
+<!-- Merch -->
+<div class="section" id="merch">
+    <h2>Merch</h2>
+    <p>Check out official MU-SIC merch below:</p>
+    <a class="button" href="https://mu-sic.bandcamp.com/merch" target="_blank">Bandcamp Merch</a>
+</div>
+
+<!-- Contact -->
 <div class="section" id="contact">
     <h2>Contact & Socials</h2>
     <a class="button" href="https://mu-sic.bandcamp.com/contact" target="_blank">Bandcamp Contact</a>
     <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n?si=iKj-HvlaTGyTilDCZieLTw" target="_blank">Spotify</a>
+    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
 </div>
 
 <footer>
@@ -279,8 +306,17 @@ function animateStars(){
 animateStars();
 
 // Parallax header
-window.addEventListener('scroll',()=>{
+window.addEventListener('scroll', ()=>{
     document.querySelector('header').style.backgroundPositionY = `${window.scrollY * 0.4}px`;
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('#cosmic-nav a').forEach(link => {
+    link.addEventListener('click', e=>{
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+    });
 });
 </script>
 
