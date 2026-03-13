@@ -75,14 +75,8 @@ z-index:-2;
 }
 
 @keyframes shoot{
-0%{
-transform:translate(0,0) rotate(45deg);
-opacity:1;
-}
-100%{
-transform:translate(-800px,800px) rotate(45deg);
-opacity:0;
-}
+0%{transform:translate(0,0) rotate(45deg);opacity:1;}
+100%{transform:translate(-800px,800px) rotate(45deg);opacity:0;}
 }
 
 /* NEBULA */
@@ -113,8 +107,8 @@ animation:nebulaMove 30s linear infinite;
 
 #moon{
 position:fixed;
-top:80px;
-right:80px;
+top:70px;
+right:70px;
 width:80px;
 height:80px;
 border-radius:50%;
@@ -165,30 +159,19 @@ z-index:2;
 /* LOGO */
 
 #header-logo{
-max-width:420px;
-width:80%;
-margin-bottom:20px;
-animation:logoPulse 4s infinite ease-in-out;
+max-width:630px;
+width:85%;
+margin-top:70px;
+margin-bottom:30px;
 filter:drop-shadow(0 0 25px #6bd7ff);
 transition:.3s;
 }
 
 #header-logo:hover{
-transform:scale(1.08);
-filter:drop-shadow(0 0 40px #6bd7ff);
+transform:scale(1.05);
 }
 
-@keyframes logoPulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.05)}
-100%{transform:scale(1)}
-}
-
-header p{
-font-size:22px;
-color:#9fe7ff;
-margin:5px 0;
-}
+/* PLAYER */
 
 header iframe{
 margin-top:20px;
@@ -323,7 +306,6 @@ background:#0b0b1f;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -338,7 +320,6 @@ background:#0b0b1f;
 </nav>
 
 <canvas id="stars"></canvas>
-
 <div id="nebula"></div>
 <div id="moon"></div>
 
@@ -352,11 +333,9 @@ background:#0b0b1f;
 <iframe src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless></iframe>
 
 <div>
-
 <a class="button" href="https://mu-sic.bandcamp.com" target="_blank">Bandcamp</a>
 <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
 <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
-
 </div>
 
 </header>
@@ -386,11 +365,9 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 <h2>Photos</h2>
 
 <div class="gallery-grid">
-
 <img src="images/photo1.jpg" loading="lazy">
 <img src="images/photo2.jpg" loading="lazy">
 <img src="images/photo3.jpg" loading="lazy">
-
 </div>
 
 </div>
@@ -464,7 +441,6 @@ ctx.fill();
 });
 
 requestAnimationFrame(animateStars);
-
 }
 
 animateStars();
@@ -482,7 +458,6 @@ star.style.left=Math.random()*window.innerWidth+"px";
 document.body.appendChild(star);
 
 setTimeout(()=>{star.remove();},1200);
-
 }
 
 setInterval(()=>{
@@ -493,6 +468,7 @@ if(Math.random()>.6) createShootingStar();
 
 const vis=document.getElementById("visualizer");
 const vctx=vis.getContext("2d");
+const logo=document.getElementById("header-logo");
 
 function resizeVisualizer(){
 vis.width=window.innerWidth*0.9;
@@ -506,17 +482,24 @@ function drawBars(){
 
 vctx.clearRect(0,0,vis.width,vis.height);
 
+let energy=0;
+
 for(let i=0;i<60;i++){
 
 let h=Math.random()*100;
+
+energy+=h;
 
 vctx.fillStyle="#6bd7ff";
 vctx.fillRect(i*20,120-h,10,h);
 
 }
 
-requestAnimationFrame(drawBars);
+energy/=60;
 
+logo.style.filter="drop-shadow(0 0 "+(20+energy/2)+"px #6bd7ff)";
+
+requestAnimationFrame(drawBars);
 }
 
 drawBars();
@@ -524,12 +507,10 @@ drawBars();
 /* LIGHTBOX */
 
 document.querySelectorAll(".gallery-grid img").forEach(img=>{
-
 img.onclick=()=>{
 document.getElementById("lightbox").style.display="flex";
 document.getElementById("lightbox-img").src=img.src;
 }
-
 });
 
 document.getElementById("lightbox").onclick=function(){
