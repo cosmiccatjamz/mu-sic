@@ -412,93 +412,44 @@ width="100%" height="380"></iframe>
 
 <script>
 
-/* CANVAS */
+/* STARFIELD */
 
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
 
 function resize(){
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 }
 resize();
-window.addEventListener("resize", resize);
-
-/* OBSERVER LOCATION */
-
-let latitude = 42;   // default Massachusetts
-let longitude = -73;
-
-if(navigator.geolocation){
-
-navigator.geolocation.getCurrentPosition(pos=>{
-latitude = pos.coords.latitude;
-longitude = pos.coords.longitude;
-});
-
-}
-
-latitude *= Math.PI/180;
-
-/* GENERATE REALISTIC STARFIELD (~2000 stars) */
+window.addEventListener("resize",resize);
 
 let stars=[];
 
-for(let i=0;i<2000;i++){
+for(let i=0;i<320;i++){
+
+let depth=Math.random();
 
 stars.push({
-ra: Math.random()*24,            // hours
-dec: Math.random()*180 - 90,     // degrees
-mag: Math.random()*4,
-twinkle: Math.random()*100
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:depth*1.8,
+dx:(Math.random()-.5)*(0.05+depth*0.05),
+dy:(Math.random()-.5)*(0.05+depth*0.05),
+depth:depth
 });
 
 }
 
-/* TIME → SIDEREAL */
+let mouseX=0;
+let mouseY=0;
 
-function getSiderealTime(){
-
-let now = Date.now()/1000;
-
-let sidereal = (now / 86164) * 24;
-
-return sidereal % 24;
-
-}
-
-/* PROJECT RA/DEC TO SCREEN */
-
-function projectStar(ra,dec){
-
-let lst = getSiderealTime() + longitude/15;
-
-let ha = (lst - ra) * 15 * Math.PI/180;
-
-let decRad = dec * Math.PI/180;
-
-let alt = Math.asin(
-Math.sin(decRad)*Math.sin(latitude) +
-Math.cos(decRad)*Math.cos(latitude)*Math.cos(ha)
-);
-
-let az = Math.acos(
-(Math.sin(decRad) - Math.sin(alt)*Math.sin(latitude)) /
-(Math.cos(alt)*Math.cos(latitude))
-);
-
-let x = canvas.width/2 + Math.sin(az)*Math.cos(alt)*canvas.width*.6;
-let y = canvas.height/2 - Math.sin(alt)*canvas.height*.7;
-
-return {x,y,visible:alt>0};
-
-}
-
-/* WARP */
+window.addEventListener("mousemove",(e)=>{
+mouseX=e.clientX;
+mouseY=e.clientY;
+});
 
 let warp=false;
-
-/* DRAW SKY */
 
 function animate(){
 
@@ -506,52 +457,73 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 
 stars.forEach(s=>{
 
-let p = projectStar(s.ra,s.dec);
+s.x+=warp?s.dx*8:s.dx;
+s.y+=warp?s.dy*8:s.dy;
 
-if(!p.visible) return;
-
-s.twinkle += .04;
-
-let brightness = (Math.sin(s.twinkle)+1)/2;
-
-let radius = 1.6 - s.mag*.25;
+if(s.x<0)s.x=canvas.width;
+if(s.x>canvas.width)s.x=0;
+if(s.y<0)s.y=canvas.height;
+if(s.y>canvas.height)s.y=0;
 
 ctx.beginPath();
 
 if(warp){
 
-ctx.moveTo(p.x,p.y);
-ctx.lineTo(p.x-12,p.y+12);
+ctx.moveTo(s.x,s.y);
+ctx.lineTo(s.x-s.dx*40,s.y-s.dy*40);
 
 }else{
 
-ctx.arc(p.x,p.y,radius,0,Math.PI*2);
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
 
 }
 
-ctx.fillStyle = "rgba(255,255,255,"+brightness+")";
-
+ctx.strokeStyle="#fff";
+ctx.fillStyle="#fff";
+ctx.stroke();
 ctx.fill();
 
 });
 
-requestAnimationFrame(animate);
+/* CONSTELLATIONS */
 
+stars.forEach(a=>{
+stars.forEach(b=>{
+
+let dx=a.x-b.x;
+let dy=a.y-b.y;
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+let mx=a.x-mouseX;
+let my=a.y-mouseY;
+let md=Math.sqrt(mx*mx+my*my);
+
+if(dist<90 && md<150){
+
+ctx.beginPath();
+ctx.moveTo(a.x,a.y);
+ctx.lineTo(b.x,b.y);
+ctx.strokeStyle="rgba(120,200,255,.15)";
+ctx.stroke();
+
+}
+
+});
+});
+
+requestAnimationFrame(animate);
 }
 
 animate();
 
-/* WARP ON MUSIC SECTION */
+/* WARP TRIGGER */
 
 window.addEventListener("scroll",()=>{
 
-let music=document.getElementById("music");
+let music=document.getElementById("music").offsetTop;
+let dist=Math.abs(window.scrollY-music);
 
-if(!music) return;
-
-let dist=Math.abs(window.scrollY-music.offsetTop);
-
-warp = dist < 250;
+warp=dist<250;
 
 });
 
@@ -560,7 +532,6 @@ warp = dist < 250;
 function shooting(){
 
 const star=document.createElement("div");
-
 star.className="shooting-star";
 
 star.style.top=Math.random()*window.innerHeight+"px";
@@ -573,35 +544,8 @@ setTimeout(()=>star.remove(),1200);
 }
 
 setInterval(()=>{
-if(Math.random()>.7) shooting();
-},4000);
-
-/* COSMIC JETPACK CATS */
-
-function launchCat(){
-
-const cat=document.createElement("div");
-
-cat.innerHTML="🐱‍🚀";
-
-cat.style.position="fixed";
-cat.style.fontSize="28px";
-cat.style.left="-80px";
-cat.style.top=Math.random()*window.innerHeight+"px";
-cat.style.zIndex="-1";
-cat.style.transition="transform 80s linear";
-
-document.body.appendChild(cat);
-
-setTimeout(()=>cat.style.transform="translateX(120vw)",50);
-
-setTimeout(()=>cat.remove(),80000);
-
-}
-
-setInterval(()=>{
-if(Math.random()>.6) launchCat();
-},10000);
+if(Math.random()>.65)shooting();
+},3000);
 
 </script>
 
