@@ -4,7 +4,6 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MU-SIC</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
@@ -48,7 +47,7 @@ color:white;
 text-shadow:0 0 10px #6bd7ff;
 }
 
-/* STARFIELD */
+/* STAR CANVAS */
 
 #stars{
 position:fixed;
@@ -56,47 +55,62 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-3;
+z-index:-5;
 }
 
-/* SHOOTING STARS */
+/* NEBULA LAYERS */
 
-.shooting-star{
-position:fixed;
-width:2px;
-height:80px;
-background:linear-gradient(white,transparent);
-transform:rotate(45deg);
-animation:shoot 1.2s linear forwards;
-z-index:-2;
-}
-
-@keyframes shoot{
-0%{transform:translate(0,0) rotate(45deg);opacity:1;}
-100%{transform:translate(-900px,900px) rotate(45deg);opacity:0;}
-}
-
-/* NEBULA */
-
-#nebula{
+.nebula{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-2;
-opacity:.35;
 pointer-events:none;
-background:
-radial-gradient(circle at 20% 30%, #2ad0ff55, transparent 40%),
-radial-gradient(circle at 70% 60%, #8a2bff55, transparent 40%),
-radial-gradient(circle at 40% 80%, #00ffd555, transparent 40%);
-animation:nebulaMove 30s linear infinite;
 }
 
-@keyframes nebulaMove{
+#nebula1{
+z-index:-4;
+opacity:.25;
+background:
+radial-gradient(circle at 20% 30%, #2ad0ff55, transparent 40%),
+radial-gradient(circle at 70% 70%, #8a2bff55, transparent 45%);
+animation:nebulaSlow 60s linear infinite;
+}
+
+#nebula2{
+z-index:-3;
+opacity:.2;
+background:
+radial-gradient(circle at 40% 60%, #00ffd555, transparent 40%),
+radial-gradient(circle at 80% 20%, #4e6bff55, transparent 40%);
+animation:nebulaMed 40s linear infinite;
+}
+
+#nebula3{
+z-index:-2;
+opacity:.15;
+background:
+radial-gradient(circle at 50% 80%, #9a4cff55, transparent 40%),
+radial-gradient(circle at 10% 60%, #00ffff55, transparent 35%);
+animation:nebulaFast 25s linear infinite;
+}
+
+@keyframes nebulaSlow{
 0%{transform:translateY(0)}
-50%{transform:translateY(-40px)}
+50%{transform:translateY(-60px)}
+100%{transform:translateY(0)}
+}
+
+@keyframes nebulaMed{
+0%{transform:translateX(0)}
+50%{transform:translateX(60px)}
+100%{transform:translateX(0)}
+}
+
+@keyframes nebulaFast{
+0%{transform:translateY(0)}
+50%{transform:translateY(30px)}
 100%{transform:translateY(0)}
 }
 
@@ -130,17 +144,34 @@ background:black;
 #satellite{
 position:fixed;
 top:140px;
-left:-100px;
+left:-120px;
 font-size:22px;
 color:#cdefff;
 text-shadow:0 0 10px #6bd7ff;
-animation:orbit 90s linear infinite;
+animation:orbit 120s linear infinite;
 z-index:-1;
 }
 
 @keyframes orbit{
 0%{transform:translateX(0)}
 100%{transform:translateX(120vw)}
+}
+
+/* SHOOTING STARS */
+
+.shooting-star{
+position:fixed;
+width:2px;
+height:90px;
+background:linear-gradient(white,transparent);
+transform:rotate(45deg);
+animation:shoot 1.2s linear forwards;
+z-index:-1;
+}
+
+@keyframes shoot{
+0%{transform:translate(0,0) rotate(45deg);opacity:1;}
+100%{transform:translate(-1000px,1000px) rotate(45deg);opacity:0;}
 }
 
 /* HEADER */
@@ -166,7 +197,7 @@ height:100%;
 background:rgba(0,0,0,.6);
 }
 
-header > *{
+header>*{
 position:relative;
 z-index:2;
 }
@@ -331,7 +362,11 @@ background:#0b0b1f;
 </nav>
 
 <canvas id="stars"></canvas>
-<div id="nebula"></div>
+
+<div id="nebula1" class="nebula"></div>
+<div id="nebula2" class="nebula"></div>
+<div id="nebula3" class="nebula"></div>
+
 <div id="moon"></div>
 <div id="satellite">🛰</div>
 
@@ -342,7 +377,7 @@ background:#0b0b1f;
 <p>Intergalactic vibes from the cosmic everything</p>
 <p>Pulling signals from stars and souls of eternities forever</p>
 
-<iframe src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless></iframe>
+<iframe src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"></iframe>
 
 <div>
 
@@ -365,48 +400,13 @@ background:#0b0b1f;
 
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/artist/0XlOOlFvxmjMptg6k4c08n"
-width="100%" height="380"
-frameBorder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
+width="100%" height="380"></iframe>
 
 <canvas id="visualizer"></canvas>
 
 </div>
 
-<div class="section" id="photos">
-
-<h2>Photos</h2>
-
-<div class="gallery-grid">
-
-<img src="images/photo1.jpg">
-<img src="images/photo2.jpg">
-<img src="images/photo3.jpg">
-
-</div>
-
-</div>
-
-<div class="section" id="merch">
-
-<h2>Merch</h2>
-
-<a class="button" href="https://mu-sic.bandcamp.com/merch" target="_blank">
-Visit Merch Store
-</a>
-
-</div>
-
-<footer>
-© 2026 MU-SIC
-</footer>
-
-<div id="lightbox">
-<img id="lightbox-img">
-</div>
-
-<div id="nova">✦</div>
+<footer>© 2026 MU-SIC</footer>
 
 <script>
 
@@ -415,17 +415,16 @@ Visit Merch Store
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 
-function resizeStars(){
+function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 }
-
-resizeStars();
-window.addEventListener("resize",resizeStars);
+resize();
+window.addEventListener("resize",resize);
 
 let stars=[];
 
-for(let i=0;i<300;i++){
+for(let i=0;i<320;i++){
 
 let depth=Math.random();
 
@@ -433,8 +432,8 @@ stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 r:depth*1.8,
-dx:(Math.random()-.5)*(0.2+depth),
-dy:(Math.random()-.5)*(0.2+depth),
+dx:(Math.random()-.5)*(0.05+depth*0.05),
+dy:(Math.random()-.5)*(0.05+depth*0.05),
 depth:depth
 });
 
@@ -448,14 +447,16 @@ mouseX=e.clientX;
 mouseY=e.clientY;
 });
 
-function animateStars(){
+let warp=false;
+
+function animate(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 stars.forEach(s=>{
 
-s.x+=s.dx;
-s.y+=s.dy;
+s.x+=warp?s.dx*8:s.dx;
+s.y+=warp?s.dy*8:s.dy;
 
 if(s.x<0)s.x=canvas.width;
 if(s.x>canvas.width)s.x=0;
@@ -463,13 +464,26 @@ if(s.y<0)s.y=canvas.height;
 if(s.y>canvas.height)s.y=0;
 
 ctx.beginPath();
+
+if(warp){
+
+ctx.moveTo(s.x,s.y);
+ctx.lineTo(s.x-s.dx*40,s.y-s.dy*40);
+
+}else{
+
 ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+
+}
+
+ctx.strokeStyle="#fff";
 ctx.fillStyle="#fff";
+ctx.stroke();
 ctx.fill();
 
 });
 
-/* CONSTELLATION LINES */
+/* CONSTELLATIONS */
 
 stars.forEach(a=>{
 stars.forEach(b=>{
@@ -495,14 +509,25 @@ ctx.stroke();
 });
 });
 
-requestAnimationFrame(animateStars);
+requestAnimationFrame(animate);
 }
 
-animateStars();
+animate();
+
+/* WARP TRIGGER */
+
+window.addEventListener("scroll",()=>{
+
+let music=document.getElementById("music").offsetTop;
+let dist=Math.abs(window.scrollY-music);
+
+warp=dist<250;
+
+});
 
 /* SHOOTING STARS */
 
-function createShootingStar(){
+function shooting(){
 
 const star=document.createElement("div");
 star.className="shooting-star";
@@ -512,100 +537,13 @@ star.style.left=Math.random()*window.innerWidth+"px";
 
 document.body.appendChild(star);
 
-setTimeout(()=>{star.remove();},1200);
+setTimeout(()=>star.remove(),1200);
 
 }
 
 setInterval(()=>{
-if(Math.random()>.6) createShootingStar();
+if(Math.random()>.65)shooting();
 },3000);
-
-/* WARP SPEED ON SCROLL */
-
-window.addEventListener("scroll",()=>{
-
-let music=document.getElementById("music").offsetTop;
-let scrollY=window.scrollY;
-
-if(Math.abs(scrollY-music)<200){
-
-stars.forEach(s=>{
-s.dx*=1.1;
-s.dy*=1.1;
-});
-
-}
-
-});
-
-/* VISUALIZER */
-
-const vis=document.getElementById("visualizer");
-const vctx=vis.getContext("2d");
-const logo=document.getElementById("header-logo");
-
-function resizeVisualizer(){
-vis.width=window.innerWidth*0.9;
-vis.height=120;
-}
-
-resizeVisualizer();
-window.addEventListener("resize",resizeVisualizer);
-
-function drawBars(){
-
-vctx.clearRect(0,0,vis.width,vis.height);
-
-let energy=0;
-
-for(let i=0;i<60;i++){
-
-let h=Math.random()*100;
-
-energy+=h;
-
-vctx.fillStyle="#6bd7ff";
-vctx.fillRect(i*20,120-h,10,h);
-
-}
-
-energy/=60;
-
-logo.style.filter="drop-shadow(0 0 "+(20+energy/2)+"px #6bd7ff)";
-
-requestAnimationFrame(drawBars);
-}
-
-drawBars();
-
-/* LIGHTBOX */
-
-document.querySelectorAll(".gallery-grid img").forEach(img=>{
-img.onclick=()=>{
-document.getElementById("lightbox").style.display="flex";
-document.getElementById("lightbox-img").src=img.src;
-}
-});
-
-document.getElementById("lightbox").onclick=function(){
-this.style.display="none";
-}
-
-/* NOVA */
-
-document.getElementById("nova").onclick=function(){
-
-for(let i=0;i<40;i++){
-stars.push({
-x:window.innerWidth-50,
-y:window.innerHeight-50,
-r:Math.random()*2,
-dx:(Math.random()-.5)*4,
-dy:(Math.random()-.5)*4
-});
-}
-
-}
 
 </script>
 
