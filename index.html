@@ -1,10 +1,11 @@
+Stable version of site which is pretty good
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MU-SIC</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
@@ -33,13 +34,14 @@ gap:30px;
 padding:15px;
 background:rgba(0,0,0,.6);
 backdrop-filter:blur(8px);
-z-index:1000;
+z-index:999;
 }
 
 .nav a{
 color:#6bd7ff;
 text-decoration:none;
 font-size:16px;
+transition:.3s;
 }
 
 .nav a:hover{
@@ -47,7 +49,7 @@ color:white;
 text-shadow:0 0 10px #6bd7ff;
 }
 
-/* STARFIELD */
+/* STAR CANVAS */
 
 #stars{
 position:fixed;
@@ -55,31 +57,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-6;
-}
-
-/* GALAXY BAND */
-
-#galaxy{
-position:fixed;
-top:-200px;
-left:-200px;
-width:160%;
-height:160%;
-opacity:.25;
-background:
-radial-gradient(ellipse at center,
-rgba(255,255,255,.35) 0%,
-rgba(200,200,255,.2) 20%,
-rgba(0,0,0,0) 70%);
-transform:rotate(20deg);
-animation:galaxyRotate 240s linear infinite;
 z-index:-5;
-}
-
-@keyframes galaxyRotate{
-0%{transform:rotate(20deg)}
-100%{transform:rotate(380deg)}
 }
 
 /* NEBULA LAYERS */
@@ -163,24 +141,22 @@ border-radius:50%;
 background:black;
 }
 
-/* PLANET */
+/* SATELLITE */
 
-#planet{
+#satellite{
 position:fixed;
-top:220px;
-left:-200px;
-width:140px;
-height:140px;
-border-radius:50%;
-background:radial-gradient(circle at 30% 30%, #ff9966, #552200);
-box-shadow:0 0 40px #ff9966;
-animation:planetDrift 200s linear infinite;
+top:140px;
+left:-120px;
+font-size:22px;
+color:#cdefff;
+text-shadow:0 0 10px #6bd7ff;
+animation:orbit 120s linear infinite;
 z-index:-1;
 }
 
-@keyframes planetDrift{
+@keyframes orbit{
 0%{transform:translateX(0)}
-100%{transform:translateX(140vw)}
+100%{transform:translateX(120vw)}
 }
 
 /* SHOOTING STARS */
@@ -203,25 +179,167 @@ z-index:-1;
 /* HEADER */
 
 header{
-min-height:100vh;
+min-height:95vh;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
 text-align:center;
+background:url('https://f4.bcbits.com/img/a4068469156_16.jpg') center/cover;
+position:relative;
 }
+
+header::after{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+}
+
+header>*{
+position:relative;
+z-index:2;
+}
+
+/* LOGO */
 
 #header-logo{
 max-width:630px;
 width:85%;
+margin-top:70px;
+margin-bottom:30px;
 filter:drop-shadow(0 0 25px #6bd7ff);
+transition:.3s;
 }
+
+/* PLAYER */
+
+header iframe{
+margin-top:20px;
+border:0;
+width:350px;
+max-width:90%;
+height:470px;
+border-radius:12px;
+box-shadow:0 0 40px #6bd7ff;
+}
+
+/* BUTTONS */
+
+.button{
+display:inline-block;
+padding:12px 26px;
+margin:10px;
+background:#6bd7ff;
+color:#000;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 0 15px #6bd7ff;
+transition:.3s;
+}
+
+.button:hover{
+transform:translateY(-3px);
+box-shadow:0 0 30px #6bd7ff;
+}
+
+/* SECTIONS */
 
 .section{
 padding:80px 20px;
 max-width:1000px;
 margin:auto;
 text-align:center;
+}
+
+.section h2{
+font-size:34px;
+color:#6bd7ff;
+text-shadow:0 0 10px #6bd7ff;
+}
+
+.section p{
+color:#ddd;
+font-size:18px;
+}
+
+/* VISUALIZER */
+
+#visualizer{
+width:100%;
+height:120px;
+margin-top:30px;
+}
+
+/* GALLERY */
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.gallery-grid img{
+width:100%;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 0 15px #6bd7ff;
+transition:.3s;
+}
+
+.gallery-grid img:hover{
+transform:scale(1.05);
+box-shadow:0 0 35px #6bd7ff;
+}
+
+/* LIGHTBOX */
+
+#lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+#lightbox img{
+max-width:90%;
+max-height:90%;
+}
+
+/* NOVA */
+
+#nova{
+position:fixed;
+bottom:30px;
+right:30px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:#6bd7ff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 20px #6bd7ff;
+animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
 }
 
 footer{
@@ -240,19 +358,19 @@ background:#0b0b1f;
 <a href="#">Home</a>
 <a href="#bio">Bio</a>
 <a href="#music">Music</a>
+<a href="#photos">Photos</a>
 <a href="writings.html">Writings</a>
+<a href="#merch">Merch</a>
 </nav>
 
 <canvas id="stars"></canvas>
-
-<div id="galaxy"></div>
 
 <div id="nebula1" class="nebula"></div>
 <div id="nebula2" class="nebula"></div>
 <div id="nebula3" class="nebula"></div>
 
 <div id="moon"></div>
-<div id="planet"></div>
+<div id="satellite">🛰</div>
 
 <header>
 
@@ -261,52 +379,126 @@ background:#0b0b1f;
 <p>Intergalactic vibes from the cosmic everything</p>
 <p>Pulling signals from stars and souls of eternities forever</p>
 
+<iframe src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"></iframe>
+
+<div>
+
+<a class="button" href="https://mu-sic.bandcamp.com" target="_blank">Bandcamp</a>
+<a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
+<a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
+
+</div>
+
 </header>
+
+<div class="section" id="bio">
+<h2>Bio</h2>
+<p>MU-SIC is an interstellar sound experiment exploring rhythm, space, and consciousness.</p>
+</div>
+
+<div class="section" id="music">
+
+<h2>Spotify Broadcast</h2>
+
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/artist/0XlOOlFvxmjMptg6k4c08n"
+width="100%" height="380"></iframe>
+
+<canvas id="visualizer"></canvas>
+
+</div>
 
 <footer>© 2026 MU-SIC</footer>
 
 <script>
 
-/* STARFIELD */
+/* CANVAS */
 
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
 function resize(){
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 }
 resize();
-window.addEventListener("resize",resize);
+window.addEventListener("resize", resize);
 
-let stars=[];
+/* OBSERVER LOCATION */
 
-for(let i=0;i<260;i++){
+let latitude = 42;   // default Massachusetts
+let longitude = -73;
 
-let depth=Math.random();
+if(navigator.geolocation){
 
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:depth*1.8,
-dx:(Math.random()-.5)*(0.035+depth*0.035),
-dy:(Math.random()-.5)*(0.035+depth*0.035),
-twinkle:Math.random()*100
+navigator.geolocation.getCurrentPosition(pos=>{
+latitude = pos.coords.latitude;
+longitude = pos.coords.longitude;
 });
 
 }
 
-/* CONSTELLATION COORDS */
+latitude *= Math.PI/180;
 
-const constellations=[
-[[.45,.35],[.48,.42],[.52,.35],[.48,.5],[.52,.55],[.44,.55],[.50,.45]],
-[[.2,.25],[.25,.28],[.3,.3],[.35,.33],[.42,.35],[.46,.32],[.5,.28]],
-[[.75,.2],[.78,.25],[.82,.22],[.86,.27],[.9,.23]]
-];
+/* GENERATE REALISTIC STARFIELD (~2000 stars) */
+
+let stars=[];
+
+for(let i=0;i<2000;i++){
+
+stars.push({
+ra: Math.random()*24,            // hours
+dec: Math.random()*180 - 90,     // degrees
+mag: Math.random()*4,
+twinkle: Math.random()*100
+});
+
+}
+
+/* TIME → SIDEREAL */
+
+function getSiderealTime(){
+
+let now = Date.now()/1000;
+
+let sidereal = (now / 86164) * 24;
+
+return sidereal % 24;
+
+}
+
+/* PROJECT RA/DEC TO SCREEN */
+
+function projectStar(ra,dec){
+
+let lst = getSiderealTime() + longitude/15;
+
+let ha = (lst - ra) * 15 * Math.PI/180;
+
+let decRad = dec * Math.PI/180;
+
+let alt = Math.asin(
+Math.sin(decRad)*Math.sin(latitude) +
+Math.cos(decRad)*Math.cos(latitude)*Math.cos(ha)
+);
+
+let az = Math.acos(
+(Math.sin(decRad) - Math.sin(alt)*Math.sin(latitude)) /
+(Math.cos(alt)*Math.cos(latitude))
+);
+
+let x = canvas.width/2 + Math.sin(az)*Math.cos(alt)*canvas.width*.6;
+let y = canvas.height/2 - Math.sin(alt)*canvas.height*.7;
+
+return {x,y,visible:alt>0};
+
+}
+
+/* WARP */
 
 let warp=false;
 
-/* ANIMATION */
+/* DRAW SKY */
 
 function animate(){
 
@@ -314,47 +506,32 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 
 stars.forEach(s=>{
 
-s.x+=warp?s.dx*8:s.dx;
-s.y+=warp?s.dy*8:s.dy;
+let p = projectStar(s.ra,s.dec);
 
-s.twinkle+=.04;
+if(!p.visible) return;
 
-let b=(Math.sin(s.twinkle)+1)/2;
+s.twinkle += .04;
+
+let brightness = (Math.sin(s.twinkle)+1)/2;
+
+let radius = 1.6 - s.mag*.25;
 
 ctx.beginPath();
 
 if(warp){
 
-ctx.moveTo(s.x,s.y);
-ctx.lineTo(s.x-s.dx*40,s.y-s.dy*40);
+ctx.moveTo(p.x,p.y);
+ctx.lineTo(p.x-12,p.y+12);
 
 }else{
 
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.arc(p.x,p.y,radius,0,Math.PI*2);
 
 }
 
-ctx.strokeStyle="rgba(255,255,255,"+b+")";
-ctx.fillStyle="rgba(255,255,255,"+b+")";
+ctx.fillStyle = "rgba(255,255,255,"+brightness+")";
 
-ctx.stroke();
 ctx.fill();
-
-});
-
-/* DRAW CONSTELLATIONS */
-
-constellations.forEach(group=>{
-
-for(let i=0;i<group.length-1;i++){
-
-ctx.beginPath();
-ctx.moveTo(group[i][0]*canvas.width,group[i][1]*canvas.height);
-ctx.lineTo(group[i+1][0]*canvas.width,group[i+1][1]*canvas.height);
-ctx.strokeStyle="rgba(120,200,255,.25)";
-ctx.stroke();
-
-}
 
 });
 
@@ -364,15 +541,17 @@ requestAnimationFrame(animate);
 
 animate();
 
-/* WARP TRIGGER */
+/* WARP ON MUSIC SECTION */
 
 window.addEventListener("scroll",()=>{
 
 let music=document.getElementById("music");
-if(!music)return;
+
+if(!music) return;
 
 let dist=Math.abs(window.scrollY-music.offsetTop);
-warp=dist<250;
+
+warp = dist < 250;
 
 });
 
@@ -381,6 +560,7 @@ warp=dist<250;
 function shooting(){
 
 const star=document.createElement("div");
+
 star.className="shooting-star";
 
 star.style.top=Math.random()*window.innerHeight+"px";
@@ -393,34 +573,35 @@ setTimeout(()=>star.remove(),1200);
 }
 
 setInterval(()=>{
-if(Math.random()>.7)shooting();
-},3500);
+if(Math.random()>.7) shooting();
+},4000);
 
-/* COSMIC CATS */
+/* COSMIC JETPACK CATS */
 
 function launchCat(){
 
 const cat=document.createElement("div");
 
 cat.innerHTML="🐱‍🚀";
+
 cat.style.position="fixed";
 cat.style.fontSize="28px";
-cat.style.left="-60px";
+cat.style.left="-80px";
 cat.style.top=Math.random()*window.innerHeight+"px";
 cat.style.zIndex="-1";
-cat.style.transition="transform 70s linear";
+cat.style.transition="transform 80s linear";
 
 document.body.appendChild(cat);
 
-setTimeout(()=>{cat.style.transform="translateX(120vw)";},50);
+setTimeout(()=>cat.style.transform="translateX(120vw)",50);
 
-setTimeout(()=>{cat.remove();},70000);
+setTimeout(()=>cat.remove(),80000);
 
 }
 
 setInterval(()=>{
-if(Math.random()>.6)launchCat();
-},9000);
+if(Math.random()>.6) launchCat();
+},10000);
 
 </script>
 
