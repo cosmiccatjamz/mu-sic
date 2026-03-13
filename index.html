@@ -14,7 +14,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Starfield canvas */
+/* Full-screen starfield */
 #stars {
     position: fixed;
     top:0; left:0;
@@ -23,7 +23,7 @@ body {
     z-index:-1;
 }
 
-/* Header */
+/* Header with parallax background */
 header {
     position: relative;
     min-height: 90vh;
@@ -34,7 +34,6 @@ header {
     text-align: center;
     background: url('https://f4.bcbits.com/img/a4068469156_16.jpg') no-repeat center/cover;
     background-size: cover;
-    transition: background-position 0.2s;
 }
 
 header::after {
@@ -42,13 +41,12 @@ header::after {
     position:absolute;
     top:0; left:0;
     width:100%; height:100%;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.3);
 }
 
-/* Header logo */
 #header-logo {
     max-width: 500px;
-    width: 90%;
+    width: 50%;
     height: auto;
     margin-bottom: 20px;
     filter: drop-shadow(0 0 25px #68d5f5);
@@ -61,17 +59,24 @@ header::after {
 }
 
 header h1 {
-    display: none; /* hide original text since we have a logo */
+    font-size: 64px;
+    color: #68d5f5;
+    text-shadow: 0 0 20px #68d5f5;
+    animation: pulseGlow 2s infinite alternate;
 }
 
 header p {
     font-size: 22px;
     color: #a0e7ff;
     margin: 5px 0;
-    text-shadow: 0 0 10px #68d5f5;
+    animation: pulseGlow 2s infinite alternate;
 }
 
-/* Bandcamp player */
+@keyframes pulseGlow {
+    0% {text-shadow:0 0 10px #68d5f5;}
+    100% {text-shadow:0 0 25px #68d5f5;}
+}
+
 header iframe {
     margin-top: 20px;
     border:0;
@@ -87,7 +92,6 @@ header iframe:hover {
     box-shadow: 0 0 55px #68d5f5;
 }
 
-/* Buttons */
 a.button {
     display: inline-block;
     padding:12px 25px;
@@ -99,7 +103,6 @@ a.button {
     text-decoration:none;
     box-shadow:0 0 15px #68d5f5;
     transition:0.3s;
-    position: relative;
 }
 
 a.button:hover {
@@ -107,7 +110,6 @@ a.button:hover {
     transform: translateY(-2px);
 }
 
-/* Sections */
 .section {
     padding:60px 20px;
     max-width:1000px;
@@ -153,9 +155,9 @@ footer {
     background:#0b0b1f;
 }
 
-/* Responsive */
 @media(max-width:768px){
-    #header-logo {width:90%;}
+    #header-logo {width:70%;}
+    header h1 {font-size:42px;}
     header p {font-size:18px;}
     header iframe {width:90%; height:400px;}
     .section h2 {font-size:28px;}
@@ -169,6 +171,7 @@ footer {
 
 <header>
     <img src="images/logo.png" alt="MU-SIC Logo" id="header-logo">
+    <h1>MU-SIC</h1>
     <p>Intergalactic vibes from the cosmic everything</p>
     <p>Pulling signals from stars and souls of eternities forever</p>
 
@@ -177,12 +180,103 @@ footer {
         src="https://bandcamp.com/EmbeddedPlayer/album=4068469156/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
         seamless></iframe>
 
-    <!-- Buttons -->
+    <!-- Social & streaming links -->
     <a class="button" href="https://mu-sic.bandcamp.com" target="_blank">Bandcamp</a>
     <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
-    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n?si=iKj-HvlaTGyTilDCZieLTw" target="_blank">Spotify</a>
+    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
 </header>
 
 <div class="section" id="bio">
     <h2>Bio</h2>
-    <p>Your musical journey, your story, your mission — write it here. Connect with your fans and let them know who you truly are and where your sound
+    <p>Your musical journey, your story, your mission — write it here. Connect with your fans and let them know who you truly are and where your sound comes from.</p>
+</div>
+
+<div class="section" id="gallery">
+    <h2>Photos</h2>
+    <div class="gallery-grid">
+        <img src="images/photo1.jpg" alt="Live performance">
+        <img src="images/photo2.jpg" alt="Album artwork">
+        <img src="images/photo3.jpg" alt="Cosmic vibes">
+    </div>
+</div>
+
+<div class="section" id="about">
+    <h2>About</h2>
+    <p>MU-SIC is an independent music project exploring rhythm, space, and cosmic connection. Tune in and experience intergalactic sounds that transcend boundaries.</p>
+</div>
+
+<div class="section" id="releases">
+    <h2>Latest Releases</h2>
+    <p>Demo Daze and the Intergalactic Broadcast :ruff edition: (2026)</p>
+</div>
+
+<div class="section" id="tour">
+    <h2>Tour Dates</h2>
+    <p>Coming soon! Follow us on Bandcamp and socials for updates.</p>
+</div>
+
+<div class="section" id="merch">
+    <h2>Merch</h2>
+    <p>Check out official MU-SIC merch below:</p>
+    <a class="button" href="https://mu-sic.bandcamp.com/merch" target="_blank">Bandcamp Merch</a>
+</div>
+
+<div class="section" id="writings">
+    <h2>Selected Writings</h2>
+    <p>Explore thoughts, lyrics, poems, and reflections — a space for creative expression.</p>
+    <a class="button" href="writings.html" target="_blank">Read Writings</a>
+</div>
+
+<div class="section" id="contact">
+    <h2>Contact & Socials</h2>
+    <a class="button" href="https://mu-sic.bandcamp.com/contact" target="_blank">Bandcamp Contact</a>
+    <a class="button" href="https://www.instagram.com/Paul_Mu_Sic" target="_blank">Instagram</a>
+    <a class="button" href="https://open.spotify.com/artist/0XlOOlFvxmjMptg6k4c08n" target="_blank">Spotify</a>
+</div>
+
+<footer>
+    &copy; 2026 MU-SIC. All rights reserved.
+</footer>
+
+<script>
+// Starfield animation
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+for(let i=0; i<200; i++){
+    stars.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*1.5,
+        dx: (Math.random()-0.5)/2,
+        dy: (Math.random()-0.5)/2
+    });
+}
+
+function animateStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s=>{
+        s.x += s.dx; s.y += s.dy;
+        if(s.x<0) s.x = canvas.width;
+        if(s.x>canvas.width) s.x = 0;
+        if(s.y<0) s.y = canvas.height;
+        if(s.y>canvas.height) s.y = 0;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle='#fff'; ctx.fill();
+    });
+    requestAnimationFrame(animateStars);
+}
+animateStars();
+
+// Parallax header
+window.addEventListener('scroll',()=>{
+    document.querySelector('header').style.backgroundPositionY = `${window.scrollY * 0.4}px`;
+});
+</script>
+
+</body>
+</html>
